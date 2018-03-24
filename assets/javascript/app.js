@@ -25,18 +25,18 @@ var myQuestions = [
 		answers: {
 			a: 'Beer',
 			b: 'Wine',
-        c: 'Cheese',
-        d: 'Bread'
+            c: 'Cheese',
+            d: 'Bread'
 		},
 		correctAnswer: 'a'
 },
 {
-		question: "Mary, Queen of Scots, claimed to be the heir to the crown of what four nations?",
+		question: "Which of the following is NOT a California Law?",
 		answers: {
-			a: 'Scotland, Wales, England and Ireland',
-			b: 'Scotland, France, Wales and Ireland',
-            c: 'Scotland, France, England and Ireland',
-            d: 'Scotland, England, Belgium and Germany'
+			a: 'It is a misdemeanor to shoot at any kind of game from a moving vehicle, unless the target is a whale.',
+			b: 'It’s unlawful to let a dog pursue a bear or bobcat at any time.',
+            c: 'The harassing of Bigfoot, Sasquatch or other undiscovered subspecies is a felony punishable by a fine and/or imprisonment.',
+            d: 'Animals are banned from mating publicly within 1,500 feet of a tavern, school, or place of worship.'
 		},
 		correctAnswer: 'c'
 },
