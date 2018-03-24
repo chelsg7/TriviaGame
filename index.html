@@ -15,83 +15,36 @@
         </title>
 </head>
 <body class= "bg-dark">
-        <nav class="navbar fixed-top navbar-light bg-light pt-2 pb-1">
+        <nav class="navbar fixed-top navbar-dark bg-dark pt-2 pb-1">
             <h1 class="navbar-brand mx-auto display-1 col-12 text-center">
                 Trivia Game
             </h1>
-            <button class="btn col-3 col-md-4 btn-warning mx-auto my-1">
+            <button class="btn col-3 btn-primary mx-auto my-1" id='start'>
                 Start
             </button>
-            <div class= "bg-info mx-auto col-8 col-md-10 text-center d-block">
-                <span id="timer">
-                    test
-                </span>
-            </div>
-        </nav>
+            <div class= "bg-danger mx-auto col-3 text-center card">
+                    <span id="timer">
+                            00:00
+                        </span>
+                </div>
+            <button type= "submit" class="btn col-3 btn-primary mx-auto my-1" id='submit'>
+                Submit
+            </button>
+            <div class= "bg-success mx-auto col-4 col-md-10 text-center d-block card">
+                    <span id="results">
+                            0 / 8
+                        </span>
+                    </div>
+                </nav>
     <section class="container pt-5 mt-5">
-        <div class="card mt-5 mb-4 mx-auto text-center col-12">
-            <div class="card-header">
-                Question 1
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    Cras justo odio
-                </li>
-                <li class="list-group-item">
-                    Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-            </ul>
-        </div>
-        <div class="card mb-4 mx-auto text-center col-12">
-            <div class="card-header">
-                Question 1
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    Cras justo odio
-                </li>
-                <li class="list-group-item">
-                    Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-            </ul>
-        </div>
-        <div class="card mb-4 mx-auto text-center col-12">
-            <div class="card-header">
-                Question 1
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    Cras justo odio
-                </li>
-                <li class="list-group-item">
-                    Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-                <li class="list-group-item">
-                    Vestibulum at eros
-                </li>
-            </ul>
-        </div>
-    </section>
+        <section id="quiz">
+        </section>
+            </section>
 <!--</section>-->
 </body>
- <!-- JS File Link -->
- <script src="assets/javascript/app.js"></script>
- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!-- JS File Link -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="assets/javascript/app.js"></script>
 </html>
