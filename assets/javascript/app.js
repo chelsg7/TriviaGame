@@ -1,4 +1,8 @@
 var timerClear = 00 + ":" + 00;
+
+
+
+
 var questionBank = [
     {
         question: 'In the "Harry Potter" book series, He Who Must Not Be Named" is also known as?',
@@ -82,50 +86,41 @@ var questionBank = [
     },
 ];
 
-var timer = "";
-
-var start = function(duration, display) {
-    var start = Date.now(),
-    diff,
-    minutes,
-    seconds;
-    var timer = function () {
-        diff = duration - (((Date.now() - start) / 1000) | 0);
-
-            minutes = (diff / 60) | 0;
-            seconds = (diff % 60) | 0;
-            
+var start = function (duration, display) {
+        var timer = duration, minutes, seconds;
+        var time = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+    
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
-            
-            display.textContent = minutes + ":" + seconds; 
-            
-            if (diff <= 0) {
-                start = Date.now() + 1000;
+    
+            display.text(minutes + ":" + seconds);
+    
+            if (--timer < 0) {
+                timer = duration;
             }
-        };
-        timer();
-        setInterval(timer, 1000);
-    };
-
-    var reset = function(){
+        }, 1000);
         clearInterval();
-        clearTimeout()
-        document.getElementById('#timer').html = timerClear;
     };
+    
+    var format =   function (minutes, seconds) {
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;display.textContent = minutes + ':' + seconds;
+};
 
-    var quizContainer = document.getElementById('quiz');
-    var resultsContainer = document.getElementById('results');
+    var quizBox = document.getElementById('quiz');
+    var resultBox = document.getElementById('results');
     var submitButton = document.getElementById('submit');
-    var answerContainers = quizContainer.querySelectorAll('.answers');
+    var answerContainers = quizBox.querySelectorAll('.answers');
     var userAnswer = '';
     var numCorrect = 0;
     var output = [];
     var answers;
 
     
-    var showResults = function(questions, quizContainer, resultsContainer){
-        var answerContainers = quizContainer.querySelectorAll('.answers');
+    var showResults = function(questions, quizBox, resultBox){
+        var answerContainers = quizBox.querySelectorAll('.answers');
         var userAnswer = '';
         var numCorrect = 0;
 
@@ -133,16 +128,16 @@ var start = function(duration, display) {
             userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
             if(userAnswer===questions[i].correctAnswer){
                 numCorrect++;
-                answerContainers[i].style.color = 'darkgreen';
+                answerContainers[i].style.color = 'green';
             }else{
                 answerContainers[i].style.color = 'red';
             }
         }
-        resultsContainer.innerHTML = numCorrect + ' / ' + questions.length;
+        resultBox.innerHTML = numCorrect + ' / ' + questions.length;
     };
     
-    var generateQuiz = function (questions, quizContainer, resultsContainer, submitButton){
-        function showQuestions(questions, quizContainer){
+    var generateQuiz = function (questions, quizBox, resultBox, submitButton){
+        function showQuestions(questions, quizBox){
             var output = [];
             var answers;
             for(var i=0; i<questions.length; i++){
@@ -159,10 +154,10 @@ var start = function(duration, display) {
                     + '<div class="answers card card-body border-warning">' + answers.join('') + '</div>'
                 );
             }
-            quizContainer.innerHTML = output.join('');
+            quizBox.innerHTML = output.join('');
         };
         
-        showQuestions(questionBank, quizContainer);
+        showQuestions(questionBank, quizBox);
     };
 
 
@@ -173,25 +168,25 @@ $( document ).ready(function() {
 
 $('#start').on("click", function() {
     console.log("start timer!")
-    var twoMinutes = 60 * 2;
-    
-    display = document.querySelector('#timer');
-    start(twoMinutes, display);
-    generateQuiz(questionBank, quizContainer, resultsContainer, submitButton);
+    var two = 60 * 2,
+    display = $('#timer');
+    start(two, display);
+    generateQuiz(questionBank, quizBox, resultBox, submitButton);
     
     setInterval(
         function(){
             alert("Time is up!");
-            showResults(questionBank, quizContainer, resultsContainer);
-            reset();
+            showResults(questionBank, quizBox, resultBox);
     }, 120000);
-    clearInterval();
 }
 );
 
 $('#submit').on("click", function(){
-        showResults(questionBank, quizContainer, resultsContainer);
-        reset();
-        clearInterval();
-        clearTimeout();
-});
+    console.log('submitted');
+    clearInterval(timer);
+    showResults(questionBank, quizBox, resultBox);
+    var zero = 0000;
+    display = $('#timer');
+    start(zero, display);
+    });
+
