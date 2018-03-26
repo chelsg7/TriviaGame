@@ -1,8 +1,6 @@
 var timerClear = 00 + ":" + 00;
-
-
-
-
+//+++++++++++++ time needs to be global because you need to clear it in multiple functions
+var time;
 var questionBank = [
     {
         question: 'In the "Harry Potter" book series, He Who Must Not Be Named" is also known as?',
@@ -85,10 +83,15 @@ var questionBank = [
         correctAnswer: 'a'
     },
 ];
-
 var start = function (duration, display) {
         var timer = duration, minutes, seconds;
-        var time = setInterval(function () {
+        
+        //------------ time needs to be global because you need to clear it in a later funtion
+        // var time = setInterval(function () {
+        //+++++++++++++
+        time = setInterval(function () {
+            //+++++++ this reduces the time
+            timer--;
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
     
@@ -97,18 +100,24 @@ var start = function (duration, display) {
     
             display.text(minutes + ":" + seconds);
     
-            if (--timer < 0) {
+            //++++++++++++ you want to clear the interval when the timer hits 0 not < 0
+            if (timer === 0) {
+            //---------------
+            // if (--timer < 0) {
                 timer = duration;
+                //+++++++++++++++ you want to clear the interval when the timer hits 0 
+                //and you need to tell it which interval to clear (aka time)
+                clearInterval(time);
             }
         }, 1000);
-        clearInterval();
+        //------ this doesn't clear anything because you didn't tell it what to clear
+        // clearInterval();
     };
     
     var format =   function (minutes, seconds) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;display.textContent = minutes + ':' + seconds;
 };
-
     var quizBox = document.getElementById('quiz');
     var resultBox = document.getElementById('results');
     var submitButton = document.getElementById('submit');
@@ -117,13 +126,11 @@ var start = function (duration, display) {
     var numCorrect = 0;
     var output = [];
     var answers;
-
     
     var showResults = function(questions, quizBox, resultBox){
         var answerContainers = quizBox.querySelectorAll('.answers');
         var userAnswer = '';
         var numCorrect = 0;
-
         for(var i=0; i<questions.length; i++){
             userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
             if(userAnswer===questions[i].correctAnswer){
@@ -159,13 +166,9 @@ var start = function (duration, display) {
         
         showQuestions(questionBank, quizBox);
     };
-
-
 $( document ).ready(function() {
     console.log( "ready!" );
 });
-
-
 $('#start').on("click", function() {
     console.log("start timer!")
     var two = 60 * 2,
@@ -180,13 +183,14 @@ $('#start').on("click", function() {
     }, 120000);
 }
 );
-
 $('#submit').on("click", function(){
     console.log('submitted');
+    //--------- you need to clear time not timer
     clearInterval(timer);
+    //++++++++++++++
+    clearInterval(time);
     showResults(questionBank, quizBox, resultBox);
     var zero = 0000;
     display = $('#timer');
-    start(zero, display);
+    // start(zero, display);
     });
-
