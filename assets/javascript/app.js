@@ -87,8 +87,10 @@ var start = function (duration, display) {
         var timer = duration, minutes, seconds;
         
         //------------ time needs to be global because you need to clear it in a later funtion
+        // var time = setInterval(function () {
+        //+++++++++++++
         time = setInterval(function () {
-            //this is a decrement function now
+            //+++++++ this reduces the time
             timer--;
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
@@ -98,19 +100,24 @@ var start = function (duration, display) {
     
             display.text(minutes + ":" + seconds);
     
-            //clear interval when timer === 0
+            //++++++++++++ you want to clear the interval when the timer hits 0 not < 0
             if (timer === 0) {
             //---------------
+            // if (--timer < 0) {
                 timer = duration;
-                //clear time when timer === 0
+                //+++++++++++++++ you want to clear the interval when the timer hits 0 
+                //and you need to tell it which interval to clear (aka time)
                 clearInterval(time);
             }
         }, 1000);
+        //------ this doesn't clear anything because you didn't tell it what to clear
+        // clearInterval();
     };
+    
     var format =   function (minutes, seconds) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;display.textContent = minutes + ':' + seconds;
-    };
+};
     var quizBox = document.getElementById('quiz');
     var resultBox = document.getElementById('results');
     var submitButton = document.getElementById('submit');
@@ -178,8 +185,12 @@ $('#start').on("click", function() {
 );
 $('#submit').on("click", function(){
     console.log('submitted');
-    //clear the time interval NOT timer
+    //--------- you need to clear time not timer
+   // clearInterval(timer);
+    //++++++++++++++
     clearInterval(time);
     showResults(questionBank, quizBox, resultBox);
-    $('#timer').html = timerClear;
+    var zero = 0000;
+    display = $('#timer');
+    // start(zero, display);
     });
